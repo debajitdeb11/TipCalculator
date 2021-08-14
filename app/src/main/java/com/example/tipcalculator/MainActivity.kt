@@ -1,10 +1,15 @@
 package com.example.tipcalculator
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.widget.SwitchCompat
+import androidx.core.content.getSystemService
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
@@ -13,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         addListenerOnButton()
+
 
     }
 
@@ -33,9 +39,10 @@ class MainActivity : AppCompatActivity() {
 
             val tip = Tip(costValue,getTip, roundOffStatus)
             tipAmountField.text = "Tip Amount ${tip.calculateTip()}"
-
-
         }
+
+        costField.setOnKeyListener { view, i, _ -> handleKeyEvent(view, i) }
+
     }
 
     private fun getCost (cost: EditText): Double {
@@ -55,6 +62,15 @@ class MainActivity : AppCompatActivity() {
             else -> .1
        }
 
+    }
+
+    private fun handleKeyEvent(view: View, keyCode: Int): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_ENTER) {
+            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+            return true
+        }
+        return false
     }
 
 }

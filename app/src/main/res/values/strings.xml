@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">TipCalculator</string>
     <string name="cos" >Cost of Service</string>
-    <string name="cosText">How was the service</string>
+    <string name="cosText">How was the service?</string>
     <string name="radio1">Amazing (20%)</string>
     <string name="radio2">Good (15%)</string>
     <string name="radio3">Ok (10%)</string>

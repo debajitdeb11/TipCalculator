@@ -5,14 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.widget.SwitchCompat
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
-//    private val costField: EditText = findViewById(R.id.cos)
-//    private val selectedTip: RadioGroup = findViewById(R.id.radioGroup)
-//    private val roundUp: SwitchCompat = findViewById(R.id.roundOff)
-//    private val calculateBtn: Button = findViewById(R.id.calculate)
-//    private val tipAmountField: TextView = findViewById(R.id.tip)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -30,7 +25,8 @@ class MainActivity : AppCompatActivity() {
 
 
         calculateBtn.setOnClickListener {
-            val costValue = costField.text.toString().toDouble()
+
+            val costValue = getCost(costField)
             val tipRadioSelectedId = selectedTip.checkedRadioButtonId
             val getTip = getTipValue(tipRadioSelectedId);
             val roundOffStatus = roundUp.isChecked
@@ -39,6 +35,15 @@ class MainActivity : AppCompatActivity() {
             tipAmountField.text = "Tip Amount ${tip.calculateTip()}"
 
 
+        }
+    }
+
+    private fun getCost (cost: EditText): Double {
+        return try {
+            cost.text.toString().toDouble()
+        } catch (e: Exception) {
+            Toast.makeText(this, "Please Enter COS", Toast.LENGTH_SHORT).show()
+            0.0
         }
     }
 

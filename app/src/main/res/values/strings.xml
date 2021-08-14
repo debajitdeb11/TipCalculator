@@ -8,4 +8,8 @@
     <string name="calculate">Calculate Tip</string>
     <string name="tip">Tip Amount</string>
     <string name="roundOff">Round Off</string>
+    <string name="dollerSymbol">$</string>
+    <string name="service">Service symbol</string>
+    <string name="roundOffSymbol">RoundOff</string>
+    <string name="calculateSymbol">Calculate Now</string>
 </resources>
